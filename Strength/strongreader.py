@@ -76,7 +76,7 @@ per_level_data = {
 # amount of weight or reps increase in order to progress in level
 
 def calcAvg(Strong_file_loc):
-    Strong_file = "C:/Users/cat8/OneDrive/Documents/LifeQuest/User Input Data/Strong/" + Strong_file_loc
+    Strong_file = "User Input Data/Strong/" + Strong_file_loc
     muscles = {
         'chest':[1],
         'bicep':[1],
