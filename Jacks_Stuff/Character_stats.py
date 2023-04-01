@@ -1,3 +1,4 @@
+import write_json
 time = 0
 distance = 0
 
@@ -15,7 +16,7 @@ def add_info():
     f = open("demofile.txt", "w")
     chess_elo = str(chess_elo)
     iq = str(iq)
-
+    
     f.write("chess elo " + chess_elo)
     f.write('\n')
     f.write("iq " + iq)
@@ -27,6 +28,7 @@ def add_info():
 
 
 def new_day():
+    username = "blaze"
     level = [0, 0, 0, 0, 0, 0]
     f = open("demofile.txt", "r")
 
@@ -47,19 +49,23 @@ def new_day():
 
     speed = distance/time
 
-    level[2] = round(((speed)**2) / (5.5 ** 2) * 8)
+    level[1] = round(((speed)**2) / (5.5 ** 2) * 8)
 
     attributes = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']
     values = [0, 0, 0, 0, 0, 0]
     values[3] = level[3]
-    values[2] = level[2]
+    values[1] = level[1]
 
     for i in range(6):
         values[i] = str(values[i])
 
     for i in range(6):
         print(values[i])
-
+    userData = {
+        "aglLvl": values[1],
+        "intLvl": values[3]
+    }
+    write_json.write_json(userData, "Saved User Data/"+ username +".json")
     f = open("valuefile.txt", "w")
     for i in range(len(values)):
         f.write(attributes[i] + " " + values[i] + ' ')
