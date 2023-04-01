@@ -1,6 +1,8 @@
 import write_json
 time = 0
 distance = 0
+username = "blaze"
+inputfile = "User Input Data/" + username + "Data.txt"
 
 
 def add_info():
@@ -28,9 +30,9 @@ def add_info():
 
 
 def new_day():
-    username = "blaze"
+    
     level = [0, 0, 0, 0, 0, 0]
-    f = open("demofile.txt", "r")
+    f = open(inputfile, "r")
 
     chess_elo = f.read()
     iq = chess_elo[((chess_elo.find("iq"))+3): ((chess_elo.find("iq"))+6)]
@@ -62,9 +64,10 @@ def new_day():
     for i in range(6):
         print(values[i])
     userData = {
-        "aglLvl": values[1],
-        "intLvl": values[3]
+        "aglLvl": int(values[1]),
+        "intLvl": int(values[3])
     }
+    
     write_json.write_json(userData, "Saved User Data/"+ username +".json")
     f = open("valuefile.txt", "w")
     for i in range(len(values)):
@@ -73,6 +76,7 @@ def new_day():
     f.close()
     for i in range(6):
         values[i] = int(values[i])
+    
 
 
 def try_catch(number):
@@ -92,7 +96,7 @@ def try_catch(number):
 
 
 def find_time():
-    f = open("demofile.txt", "r")
+    f = open(inputfile, "r")
     info = f.read()
     total = 0
 
@@ -130,7 +134,7 @@ def find_time():
 
 
 def find_distance():
-    f = open("demofile.txt", "r")
+    f = open(inputfile, "r")
     info = f.read()
     total = 0
 
@@ -149,3 +153,5 @@ def find_distance():
         total = meter
 
     return total
+
+new_day()
