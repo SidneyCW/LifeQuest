@@ -1,4 +1,9 @@
+import sys
+
+sys.path.append('MultipurposeFunctions')
+                
 import write_json
+
 time = 0
 distance = 0
 username = "blaze"

@@ -1,5 +1,9 @@
 import json
 import strongreader
+import sys
+
+sys.path.append('MultipurposeFunctions')
+                
 import write_json
       
 class StrengthWrite:
