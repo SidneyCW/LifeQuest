@@ -1,0 +1,4 @@
+chess elo 695
+iq 136
+time 56 minutes
+distance 10 kilometers 0 meters.
