@@ -9,7 +9,6 @@ class StrengthWrite:
     def writeStrongStr(self):
         strengthLvl = strongreader.calcAvg("strong - " + self.username + ".csv")
         userData = {
-            "username": self.username,
             "strLvl": strengthLvl
         }
         write_json.write_json(userData, "Saved User Data/"+ self.username +".json")
