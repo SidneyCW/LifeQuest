@@ -4,7 +4,7 @@ import sys
 
 sys.path.append('MultipurposeFunctions')
                 
-import write_json
+from write_json import write_json
       
 class StrengthWrite:
     def __init__(self, username):
@@ -15,7 +15,7 @@ class StrengthWrite:
         userData = {
             "strLvl": strengthLvl
         }
-        write_json.write_json(userData, "Saved User Data/"+ self.username +".json")
+        write_json(userData, "Saved User Data/"+ self.username +".json")
         return
 t1 = StrengthWrite('Blaze')
 t1.writeStrongStr()

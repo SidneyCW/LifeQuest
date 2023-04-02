@@ -1,5 +1,5 @@
 
-import Character_stats
+import Jacks_Stuff.Character_stats as Character_stats
 
 
 class Start:

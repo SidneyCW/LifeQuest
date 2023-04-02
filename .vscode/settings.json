@@ -1,5 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "./MultipurposeFunctions"
+        "./MultipurposeFunctions",
+        "./Dexterity",
+        "./Intelligence"
     ]
 }

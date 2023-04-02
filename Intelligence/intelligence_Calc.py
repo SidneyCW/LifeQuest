@@ -2,7 +2,7 @@ import sys
 
 sys.path.append('MultipurposeFunctions')
 
-import try_catch
+from try_catch import try_catch
 
 def intelligenceCalc(username):
     inputfile = "User Input Data/" + username + "Data.txt"

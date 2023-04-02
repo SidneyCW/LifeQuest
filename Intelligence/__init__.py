@@ -1,1 +1,0 @@
-from .intelligenceCalc import intelligenceCalc

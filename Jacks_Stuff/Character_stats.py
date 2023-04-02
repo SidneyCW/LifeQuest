@@ -4,21 +4,14 @@ sys.path.append('MultipurposeFunctions')
 sys.path.append('Intelligence')
 sys.path.append('Dexterity')
 
-import write_json
-import try_catch
-from Intelligence.intelligenceCalc import intelligenceCalc
-from Dexterity.agilityCalc import agilityCalc
+from agility_Calc import agilityCalc
+from intelligence_Calc import intelligenceCalc
+from try_catch import try_catch
+from write_json import write_json
 
 
 
-time = 0
-distance = 0
-username = "blaze"
-inputfile = "User Input Data/" + username + "Data.txt"
-
-
-def add_info():
-
+def change_data():
     chess_elo = input("chess elo: ")
     iq = input("iq: ")
     run_time = input("run time: ")
@@ -40,20 +33,12 @@ def add_info():
     f.write('distance ' + run_distance + '.')
     f.close()
 
+def add_info(username):
+    inputfile = "User Input Data/" + username + "Data.txt"
 
     userData = {
         "aglLvl": agilityCalc(username),
         "intLvl": intelligenceCalc(username)
     }
     
-    write_json.write_json(userData, "Saved User Data/"+ username +".json")
-
-    """
-    f = open("valuefile.txt", "w")
-    for i in range(len(values)):
-        f.write(attributes[i] + " " + values[i] + ' ')
-    f.write('\n')
-    f.close()
-    for i in range(6):
-        values[i] = int(values[i])
-    """
+    write_json(userData, "Saved User Data/"+ username +".json")

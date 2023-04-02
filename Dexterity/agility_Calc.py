@@ -2,22 +2,19 @@ import sys
 
 sys.path.append('MultipurposeFunctions')
 
-import try_catch
+from try_catch import try_catch
 
-username = ""
-inputfile = "User Input Data/" + username + "Data.txt"
 
-def agilityCalc(user):
-    username = user    
-    time = find_time()
-    distance = find_distance()
+def agilityCalc(username):  
+    time = find_time(username)
+    distance = find_distance(username)
 
     speed = distance/time
 
     return round(((speed)**2) / (5.5 ** 2) * 8)
 
-def find_time():
-    
+def find_time(username):
+    inputfile = "User Input Data/" + username + "Data.txt"
 
     f = open(inputfile, "r")
     info = f.read()
@@ -55,7 +52,8 @@ def find_time():
 
     return total
 
-def find_distance():
+def find_distance(username):
+    inputfile = "User Input Data/" + username + "Data.txt"
     f = open(inputfile, "r")
     info = f.read()
     total = 0
