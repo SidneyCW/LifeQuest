@@ -5,7 +5,7 @@ sys.path.append('MultipurposeFunctions')
 from try_catch import try_catch
 
 def intelligenceCalc(username):
-    inputfile = "User Input Data/" + username + "Data.txt"
+    inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
     f = open(inputfile, "r")
 
     chess_elo = f.read()

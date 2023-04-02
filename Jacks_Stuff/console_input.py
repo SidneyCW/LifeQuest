@@ -1,15 +1,20 @@
-
-import Jacks_Stuff.Character_stats as Character_stats
+import json
+import Character_stats as Character_stats
 
 
 class Start:
+    username = input("username: ")
     print('Do you want to input new data? if so enter y')
     answer = input('answer: ')
 
     if(answer == 'y'):
-        Character_stats.add_info()
+        Character_stats.change_data(username)
+        Character_stats.add_stats(username)
     print('Do you want to see your levels? if so enter y')
     answer = input('answer: ')
     if(answer == 'y'):
-        Character_stats.new_day()
+        f = open ('Saved User Data/'+ username + '.json')
+        data = json.load(f)
+        for item in data["user_details"]:
+            print(item,":", data["user_details"][item])
 

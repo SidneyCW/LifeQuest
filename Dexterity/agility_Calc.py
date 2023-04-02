@@ -14,7 +14,7 @@ def agilityCalc(username):
     return round(((speed)**2) / (5.5 ** 2) * 8)
 
 def find_time(username):
-    inputfile = "User Input Data/" + username + "Data.txt"
+    inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
 
     f = open(inputfile, "r")
     info = f.read()
@@ -53,7 +53,7 @@ def find_time(username):
     return total
 
 def find_distance(username):
-    inputfile = "User Input Data/" + username + "Data.txt"
+    inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
     f = open(inputfile, "r")
     info = f.read()
     total = 0

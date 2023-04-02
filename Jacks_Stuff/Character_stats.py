@@ -11,7 +11,7 @@ from write_json import write_json
 
 
 
-def change_data():
+def change_data(username):
     chess_elo = input("chess elo: ")
     iq = input("iq: ")
     run_time = input("run time: ")
@@ -20,7 +20,7 @@ def change_data():
     chess_elo = try_catch(chess_elo)
     iq = try_catch(iq)
 
-    f = open("demofile.txt", "w")
+    f = open("User Input Data/Manual Input Data/" + username + "_Data.txt", "w")
     chess_elo = str(chess_elo)
     iq = str(iq)
     
@@ -32,9 +32,10 @@ def change_data():
     f.write('\n')
     f.write('distance ' + run_distance + '.')
     f.close()
+    
 
-def add_info(username):
-    inputfile = "User Input Data/" + username + "Data.txt"
+def add_stats(username):
+    inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
 
     userData = {
         "aglLvl": agilityCalc(username),
