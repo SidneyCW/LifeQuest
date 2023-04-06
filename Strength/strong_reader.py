@@ -99,5 +99,7 @@ def calcAvg(Strong_file_loc):
             level = round((weight * (1 + reps/30))/per_level_data[key])
             for group in exercise_type[key]:
                 muscles[group].append(level)
+    # Calculate the average level based on the last three levels for each muscle group (stored in the lists within the 'muscles' dictionary), rounding to the nearest integer, and assigning it to the variable 'Avg'
     Avg = round(sum(muscles['chest'][-3:] + muscles['bicep'][-3:] + muscles['back'][-3:] + muscles['tricep'][-3:] + muscles['leg'][-3:] + muscles['shoulder'][-3:]) / 18)
+    # Return the calculated average level
     return Avg

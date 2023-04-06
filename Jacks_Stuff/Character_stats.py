@@ -4,7 +4,7 @@ sys.path.append('MultipurposeFunctions')
 sys.path.append('Intelligence')
 sys.path.append('Dexterity')
 
-from agility_Calc import agilityCalc
+from agility_calc import agilityCalc
 from intelligence_Calc import intelligenceCalc
 from try_catch import try_catch
 from write_json import write_json
