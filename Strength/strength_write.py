@@ -12,7 +12,7 @@ from write_json import write_json
 # Defining a class for writing user's strength level to a JSON file
 class StrengthWrite:
     # Initializing the class with a username
-    def __init__(self, username):
+    def __init__(self, username) -> None:
         self.username = username
     
     # Defining a method for calculating the user's strength level and writing it to a JSON file

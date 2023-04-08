@@ -1,2 +1,2 @@
-def calcLvl(runDistanceKm, avgSpeed):
+def calcLvlRDS(runDistanceKm, avgSpeed):
     pass
