@@ -87,7 +87,7 @@ def calcAvg(Strong_file_loc):
         'cardio':[1],
         'abs':[1]
     }
-
+    # dictionary of all muscle groups with their values being lists of the last three levels for each muscle group
     with open(Strong_file, 'r') as csvfile:
         reader = csv.reader(csvfile)
         next(reader)

@@ -2,6 +2,10 @@
     "python.analysis.extraPaths": [
         "./MultipurposeFunctions",
         "./Dexterity",
-        "./Intelligence"
+        "./Intelligence",
+        "./Wisdom",
+        "./Charisma",
+        "./Constitution",
+        "./Strength"
     ]
 }

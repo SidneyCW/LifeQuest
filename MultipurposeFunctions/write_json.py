@@ -6,6 +6,6 @@ def write_json(new_data, filename):
         file_data["user_details"].update(new_data)
         file.seek(0)
         json.dump(file_data, file, indent = 4)
-        
+        file.truncate()
         
 # code written by aman neekhara and found on https://www.geeksforgeeks.org/append-to-json-file-using-python/

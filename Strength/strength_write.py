@@ -14,7 +14,9 @@ class StrengthWrite:
     # Initializing the class with a username
     def __init__(self, username) -> None:
         self.username = username
-    
+        
+        # Returning nothing
+        return None
     # Defining a method for calculating the user's strength level and writing it to a JSON file
     def writeStrongStr(self):
         # Calculating the user's strength level using data from a CSV file
