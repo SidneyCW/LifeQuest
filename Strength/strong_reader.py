@@ -1,5 +1,4 @@
 import csv
-import pandas as pd
 
 exercise_type = {
     'Lat Pulldown (Cable)': ['back','bicep'], 
