@@ -5,3 +5,4 @@ distance 0 kilometers 5 meters.
 weight 60
 long time 3000
 long distance 10000
+react time 190 

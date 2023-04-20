@@ -3,15 +3,16 @@ import sys
 sys.path.append('MultipurposeFunctions')
 
 from try_catch import try_catch
+from react_time import react_calc
 
 
 def agilityCalc(username):  
     time = find_time(username)
     distance = find_distance(username)
 
-    speed = distance/time
+    speed = round(((distance/time)**2) / (5.5 ** 2) * 8)
 
-    return round(((speed)**2) / (5.5 ** 2) * 8)
+    return speed
 
 def find_time(username):
     inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
@@ -73,3 +74,4 @@ def find_distance(username):
         total = meter
 
     return total
+print(agilityCalc('Sleepy'))

@@ -8,6 +8,7 @@ from agility_calc import agilityCalc
 from intelligence_Calc import intelligenceCalc
 from try_catch import try_catch
 from write_json import write_json
+from dex_write import calcDex
 
 
 
@@ -36,10 +37,10 @@ def change_data(username):
 
 def add_stats(username):
     inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
-
     userData = {
-        "aglLvl": agilityCalc(username),
+        "dexLvl": calcDex(username),
         "intLvl": intelligenceCalc(username)
     }
     
     write_json(userData, "Saved User Data/"+ username +".json")
+add_stats("Blaze")

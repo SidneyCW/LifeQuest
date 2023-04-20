@@ -3,3 +3,4 @@ iq 133
 time 1 second
 distance 0 kilometers 7 meters.
 weight 63.5
+react time 200
