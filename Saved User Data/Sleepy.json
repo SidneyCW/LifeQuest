@@ -1,8 +1,9 @@
 {
     "user_details": {
         "username": "Sleepy",
-        "strLvl": 11,
+        "dexLvl": 9,
         "intLvl": 15,
-        "dexLvl": 9
+        "strLvl": 14,
+        "conLvl": 6
     }
 }

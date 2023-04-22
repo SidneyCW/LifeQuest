@@ -3,6 +3,6 @@ iq 136
 time 1 second
 distance 0 kilometers 5 meters.
 weight 60
-long time 3000
-long distance 10000
+long time 600
+long distance 2000
 react time 190 

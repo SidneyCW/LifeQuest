@@ -3,12 +3,16 @@ import sys
 sys.path.append('MultipurposeFunctions')
 sys.path.append('Intelligence')
 sys.path.append('Dexterity')
+sys.path.append('Strength')
+sys.path.append('Constitution')
 
 from agility_calc import agilityCalc
 from intelligence_Calc import intelligenceCalc
 from try_catch import try_catch
 from write_json import write_json
 from dex_write import calcDex
+from strong_reader import calcStr
+from calc_constitution import writeEnduranceCon
 
 
 
@@ -36,11 +40,15 @@ def change_data(username):
     
 
 def add_stats(username):
-    inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
     userData = {
         "dexLvl": calcDex(username),
-        "intLvl": intelligenceCalc(username)
+        "intLvl": intelligenceCalc(username),
+        "strLvl": calcStr(username),
+        "conLvl": writeEnduranceCon(username)
     }
     
     write_json(userData, "Saved User Data/"+ username +".json")
+    
+    return None
+
 add_stats("Blaze")

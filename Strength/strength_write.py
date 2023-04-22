@@ -8,27 +8,8 @@ sys.path.append('MultipurposeFunctions')
 
 # Importing a custom function from the custom module
 from write_json import write_json
-
-# Defining a class for writing user's strength level to a JSON file
-class StrengthWrite:
-    # Initializing the class with a username
-    def __init__(self, username) -> None:
-        self.username = username
-        
-        # Returning nothing
-        return None
-    # Defining a method for calculating the user's strength level and writing it to a JSON file
-    def writeStrongStr(self):
-        # Calculating the user's strength level using data from a CSV file
-        strengthLvl = strong_reader.calcAvg("strong - " + self.username + ".csv")
-        
-        # Creating a dictionary containing the user's strength level
-        userData = {
-            "strLvl": strengthLvl
-        }
-        
-        # Writing the user's data to a JSON file
-        write_json(userData, "Saved User Data/"+ self.username +".json")
-        
-        # Returning nothing
-        return None
+# Defining a method for calculating the user's strength level and writing it to a JSON file
+def writeStrongStr(username):
+    # Calculating the user's strength level using data from a CSV file
+    strengthLvl = strong_reader.calcStr("strong - " + username + ".csv")
+    return strengthLvl

@@ -1,8 +1,9 @@
 {
     "user_details": {
         "username": "Blaze",
-        "strLvl": 8,
+        "dexLvl": 13,
         "intLvl": 14,
-        "dexLvl": 13
+        "strLvl": 10,
+        "conLvl": 10
     }
 }
