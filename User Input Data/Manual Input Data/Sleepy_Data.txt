@@ -1,4 +1,4 @@
-chess elo 695
+chess elo 636
 iq 136
 time 1 second
 distance 0 kilometers 5 meters.

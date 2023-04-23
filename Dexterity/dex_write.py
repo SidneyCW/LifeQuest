@@ -1,5 +1,5 @@
 import sys
-from agility_calc import agilityCalc
+from agility_Calc import agilityCalc
 from react_time import react_calc
 
 sys.path.append('MultipurposeFunctions')

@@ -12,7 +12,7 @@ def intelligenceCalc(username):
     iq = chess_elo[((chess_elo.find("iq"))+3): ((chess_elo.find("iq"))+6)]
     chess_elo = chess_elo[((chess_elo.find("elo"))+4): ((chess_elo.find("elo"))+8)]
 
-    chess_elo = try_catch(chess_elo)
+    chess_elo = try_catch(chess_elo) 
     iq = try_catch(iq)
 
     if type(chess_elo) == '<class str>':
