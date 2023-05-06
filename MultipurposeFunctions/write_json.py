@@ -1,9 +1,10 @@
 import json
 
-def write_json(new_data, filename):
+def write_json(new_data, username, filename='Saved User Data/user_lvls.json'):
+
     with open(filename,'r+') as file:
         file_data = json.load(file)
-        file_data["user_details"].update(new_data)
+        file_data[username].update(new_data)
         file.seek(0)
         json.dump(file_data, file, indent = 4)
         file.truncate()

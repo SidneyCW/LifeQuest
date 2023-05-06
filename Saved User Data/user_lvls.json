@@ -1,0 +1,18 @@
+{
+    "Sleepy": {
+        "username": "Sleepy",
+        "chess.com_username": "SleepySidney",
+        "dexLvl": 9,
+        "intLvl": 14,
+        "strLvl": 14,
+        "conLvl": 6
+    },
+    "Blaze": {
+        "username": "Blaze",
+        "chess.com_username": "jackblaze1",
+        "dexLvl": 13,
+        "intLvl": 15,
+        "strLvl": 10,
+        "conLvl": 10
+    }
+}

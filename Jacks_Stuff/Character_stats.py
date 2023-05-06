@@ -62,10 +62,7 @@ def add_stats(username):
         "conLvl": writeEnduranceCon(username)
     }
     
-    write_json(userData, "Saved User Data/"+ username +".json")
+    write_json(userData, username)
     
     return None
-
-
-replace_data("Blaze", "chess elo")
 add_stats("Blaze")
