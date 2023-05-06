@@ -1,0 +1,3 @@
+weight 60
+long time 3600
+long distance 8000

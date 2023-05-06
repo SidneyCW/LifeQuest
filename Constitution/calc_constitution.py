@@ -24,3 +24,4 @@ def writeEnduranceCon(username):
     level = round(sum(endurance)/len(endurance))
     return level
 
+print(writeEnduranceCon('Sleepy'))
