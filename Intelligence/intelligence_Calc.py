@@ -20,6 +20,5 @@ def intelligenceCalc(username):
     chessLvl = chess_elo / 100
     iqLvl = iq / 7.5
     intLvl = round((chessLvl + (iqLvl*2)) / 3)
-    #round((((chess_elo * 680) / (800 ** 2) * 10) + ((iq ** 2) / (100 ** 2) * 8)) / 2)
 
     return intLvl
