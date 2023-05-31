@@ -1,7 +1,6 @@
 import requests
 import json
 
-player_username = 'sleepysidney'
 def chess_elo_getter(player_username):
     url = f"https://api.chess.com/pub/player/{player_username}/stats"
 
