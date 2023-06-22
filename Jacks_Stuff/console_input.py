@@ -1,5 +1,5 @@
 import json
-import character_stats as Character_stats
+import Character_stats as Character_stats
 
 
 class Start:
