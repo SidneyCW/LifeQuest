@@ -23,5 +23,3 @@ def writeEnduranceCon(username):
     endurance.append(calcLvlRD(distance))
     level = round(sum(endurance)/len(endurance))
     return level
-
-print(writeEnduranceCon('Sleepy'))
