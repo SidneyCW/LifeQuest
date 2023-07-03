@@ -1,4 +1,5 @@
 import csv
+from datetime import date
 
 exercise_type = {
     'Lat Pulldown (Cable)': ['back','bicep'], 
@@ -77,15 +78,33 @@ per_level_data = {
 def calcStr(username):
     Strong_file_loc = "strong - " + username + ".csv"
     Strong_file = "User Input Data/Strong/" + Strong_file_loc
+    TODAY = '2023-03' # str(date.today())[:7]
+    MONTH = int(TODAY[-2:])
+    Prev_month = ''
+    if MONTH < 10:
+        Prev_month = TODAY[:6] + str(MONTH-1)
+    else:
+        Prev_month = TODAY[:5] + str(MONTH-1)
+    Prev_month_access = {
+        'chest':False,
+        'bicep':False,
+        'back':False,
+        'tricep':False,
+        'leg':False,
+        'shoulder':False,
+        'cardio':False,
+        'abs':False
+    }
+
     muscles = {
-        'chest':[1],
-        'bicep':[1],
-        'back':[1],
-        'tricep':[1],
-        'leg':[1],
-        'shoulder':[1],
-        'cardio':[1],
-        'abs':[1]
+        'chest':{'':[1]},
+        'bicep':{'':[1]},
+        'back':{'':[1]},
+        'tricep':{'':[1]},
+        'leg':{'':[1]},
+        'shoulder':{'':[1]},
+        'cardio':{'':[1]},
+        'abs':{'':[1]}
     }
     # dictionary of all muscle groups with their values being lists of the last three levels for each muscle group
     with open(Strong_file, 'r') as csvfile:
@@ -97,9 +116,28 @@ def calcStr(username):
             weight = float(row[5])
             reps = float(row[6])
             level = round((weight * (1 + reps/30))/per_level_data[key])
+            Set_date = str(row[0])[:7]
+            if Set_date[:5] == Prev_month:
+                Prev_month_access[group] = True
             for group in exercise_type[key]:
-                muscles[group].append(level)
+                if Set_date in muscles[group]:
+                    muscles[group][Set_date].append(level)
+                else:
+                    muscles[group][Set_date] = [level]
+    Group_lvl_list = []
+    for group in muscles:
+        Group_lvl = 0
+        Group_list = []
+        if Prev_month_access[group] == True:
+            Group_list = muscles[group][TODAY] + muscles[group][Prev_month]
+        else:
+            Group_list = muscles[group][TODAY]
+        Group_lvl = sum(Group_list) / len(Group_list)
+        Group_lvl_list.append(Group_lvl)
+
     # Calculate the average level based on the last three levels for each muscle group (stored in the lists within the 'muscles' dictionary), rounding to the nearest integer, and assigning it to the variable 'Avg'
-    Avg = round(sum(muscles['chest'][-3:] + muscles['bicep'][-3:] + muscles['back'][-3:] + muscles['tricep'][-3:] + (muscles['leg'][-3:]*3) + muscles['shoulder'][-3:]) / 20)
+    Avg = round(sum(Group_lvl_list) / 6)
     # Return the calculated average level
     return Avg
+
+print(calcStr('Sleepy'))
