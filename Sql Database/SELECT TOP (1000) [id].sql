@@ -1,0 +1,1 @@
+SELECT * FROM [master].[dbo].[StatsInfo]
