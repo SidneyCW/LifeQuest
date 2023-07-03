@@ -22,3 +22,4 @@ def intelligenceCalc(username):
     intLvl = round((chessLvl + (iqLvl*2)) / 3)
 
     return intLvl
+#testin shite
