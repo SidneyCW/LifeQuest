@@ -1,12 +1,13 @@
 import csv
 from datetime import date
+import json
 
 exercise_type = {
     'Lat Pulldown (Cable)': ['back','bicep'], 
     'Preacher Curl (Barbell)': ['bicep'], 
     'Seated Row (Cable)': ['back'], 
     'Hammer Curl (Dumbbell)': ['bicep'], 
-    'Chin Up (Assisted)': ['abs'], 
+    'Chin Up (Assisted)': ['bicep'], 
     'Incline Bench Press (Dumbbell)': ['chest','tricep','shoulder'], 
     'Triceps Extension (Cable)': ['tricep'], 
     'Lateral Raise (Dumbbell)': ['shoulder'], 
@@ -17,10 +18,10 @@ exercise_type = {
     'T Bar Row': ['back'], 
     'Hip Abductor (Machine)': ['leg'], 
     'Hip Adductor (Machine)': ['leg'], 
-    'Stair master ': ['cardio'], 
+    'Stair master ': ['legs'], 
     'Bench Press (Barbell)': ['chest','tricep','shoulder'], 
     'Triceps Dip (Assisted)': ['tricep'], 
-    'Sit Up': ['abs'], 
+    'Sit Up': ['leg'], 
     'Leg Press': ['leg'], 
     'Seated Leg Press (Machine)': ['leg'], 
     'Seated Leg Curl (Machine)': ['leg'], 
@@ -30,7 +31,7 @@ exercise_type = {
     'Calf Press on Seated Leg Press': ['leg'], 
     'Reverse Curl (Barbell)': ['bicep'], 
     'Incline Bench Press (Barbell)': ['chest','tricep','shoulder'], 
-    'Chin Up': ['abs'], 
+    'Chin Up': ['bicep'], 
     'Chest Press (Machine)': ['chest'], 
     'Iso-Lateral Row (Machine)': ['back'],
     'Squat (Barbell)': ['leg'],
@@ -43,7 +44,6 @@ per_level_data = {
     'Preacher Curl (Barbell)': 6.6, 
     'Seated Row (Cable)': 10.8, 
     'Hammer Curl (Dumbbell)': 3.4, 
-    'Chin Up (Assisted)': 1.7, 
     'Incline Bench Press (Dumbbell)': 5, 
     'Triceps Extension (Cable)': 7.1, 
     'Lateral Raise (Dumbbell)': 2.6, 
@@ -67,13 +67,47 @@ per_level_data = {
     'Calf Press on Seated Leg Press': 34.3, 
     'Reverse Curl (Barbell)': 6.7, 
     'Incline Bench Press (Barbell)': 11, 
-    'Chin Up': 1.7, 
+    'Chin Up': 0.8, 
     'Chest Press (Machine)': 13, 
     'Iso-Lateral Row (Machine)': 10.8,
     'Squat (Barbell)': 16.1,
     'Deadlift (Barbell)': 18.4
 }
 # amount of weight or reps increase in order to progress in level
+
+def checkExerExist(username, exercise, one_rep_max):
+    if exercise in exercise_type and exercise in per_level_data:
+        return None
+    else:
+        with open('Saved User Data/user_lvls.json', 'r') as user_lvls_file:
+            user_lvls = json.load(user_lvls_file)
+        muscle_group = str(input(exercise + "\nWhat muscle group does this mostly use?\n(c = chest | bi = biceps | ba = back | t = triceps | l = legs | s = shoulders)\n"))
+        in_conversion = {
+            'c':'chest',
+            'bi':'bicep',
+            'ba':'back',
+            't':'tricep',
+            'l':'leg',
+            's':'shoulder'
+        }
+        muscle_group = in_conversion[muscle_group]
+        level = user_lvls[username]['strLvl']
+        per_level = one_rep_max/level
+
+        exercise_type[exercise] = [muscle_group]
+        per_level_data[exercise] = per_level
+
+        error = {
+            'username' : username,
+            'type' : 'excercise not in catalogue',
+            'excercise' : exercise
+        }
+
+        with open('Saved User Data/errors.json', 'r') as error_file:
+            error_json = json.load(error_file)
+            error_json['Strong_reader'][str(date.today())] = error
+        return None
+
 
 def calcStr(username):
     Strong_file_loc = "strong - " + username + ".csv"
@@ -82,7 +116,7 @@ def calcStr(username):
     MONTH = int(TODAY[-2:])
     Prev_month = ''
     if MONTH < 10:
-        Prev_month = TODAY[:6] + str(MONTH-1)
+        Prev_month = TODAY[:5] + '0' + str(MONTH-1)
     else:
         Prev_month = TODAY[:5] + str(MONTH-1)
     Prev_month_access = {
@@ -91,9 +125,15 @@ def calcStr(username):
         'back':False,
         'tricep':False,
         'leg':False,
-        'shoulder':False,
-        'cardio':False,
-        'abs':False
+        'shoulder':False
+    }
+    month_access = {
+        'chest':False,
+        'bicep':False,
+        'back':False,
+        'tricep':False,
+        'leg':False,
+        'shoulder':False
     }
 
     muscles = {
@@ -102,9 +142,7 @@ def calcStr(username):
         'back':{'':[1]},
         'tricep':{'':[1]},
         'leg':{'':[1]},
-        'shoulder':{'':[1]},
-        'cardio':{'':[1]},
-        'abs':{'':[1]}
+        'shoulder':{'':[1]}
     }
     # dictionary of all muscle groups with their values being lists of the last three levels for each muscle group
     with open(Strong_file, 'r') as csvfile:
@@ -115,29 +153,41 @@ def calcStr(username):
             key = row[3]
             weight = float(row[5])
             reps = float(row[6])
-            level = round((weight * (1 + reps/30))/per_level_data[key])
+            one_rep_max = weight * (1 + reps/30)
+            checkExerExist(username, key, one_rep_max)
+
+            level = int(round((one_rep_max)/per_level_data[key]))
             Set_date = str(row[0])[:7]
-            if Set_date[:5] == Prev_month:
-                Prev_month_access[group] = True
             for group in exercise_type[key]:
+                if Set_date == Prev_month:
+                    Prev_month_access[group] = True
+                if Set_date == TODAY:
+                    month_access[group] = True
                 if Set_date in muscles[group]:
                     muscles[group][Set_date].append(level)
                 else:
                     muscles[group][Set_date] = [level]
+
+
+    with open('Saved User Data/user_lvls.json', 'r') as user_lvls_file:
+        user_lvls = json.load(user_lvls_file)
+
     Group_lvl_list = []
     for group in muscles:
-        Group_lvl = 0
         Group_list = []
-        if Prev_month_access[group] == True:
-            Group_list = muscles[group][TODAY] + muscles[group][Prev_month]
-        else:
-            Group_list = muscles[group][TODAY]
+        if Prev_month_access[group]:
+            Group_list.extend(muscles[group].get(Prev_month, []))
+        if month_access[group]:
+            Group_list.extend(muscles[group].get(TODAY, []))
+        if not month_access[group] and not Prev_month_access[group]:
+            Group_list.append(int(user_lvls[username]['strLvl']) - 1)
+
         Group_lvl = sum(Group_list) / len(Group_list)
         Group_lvl_list.append(Group_lvl)
 
-    # Calculate the average level based on the last three levels for each muscle group (stored in the lists within the 'muscles' dictionary), rounding to the nearest integer, and assigning it to the variable 'Avg'
-    Avg = round(sum(Group_lvl_list) / 6)
-    # Return the calculated average level
+    Avg = round(sum(Group_lvl_list) / len(Group_lvl_list))
+    print(Group_lvl_list)
     return Avg
+
 
 print(calcStr('Sleepy'))
