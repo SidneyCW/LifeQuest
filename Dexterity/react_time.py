@@ -1,7 +1,8 @@
+import json
+
 def react_calc(username):
-    inputfile = "User Input Data/Manual Input Data/" + username + "_Data.txt"
-    with open(inputfile, "r") as f:
-            info = f.read()
-            reactSpeed = int(info[info.find('react time'):].replace('react time ', '').split()[0])
+    userDataJson = open("Saved User Data/user_lvls.json")
+    userData = json.load(userDataJson)
+    reactSpeed = userData[username]['reaction time']
     lvl = round(30 - (reactSpeed / 12.4))
     return lvl

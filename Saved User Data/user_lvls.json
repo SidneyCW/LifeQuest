@@ -5,7 +5,16 @@
         "dexLvl": 9,
         "intLvl": 14,
         "strLvl": 14,
-        "conLvl": 6
+        "conLvl": 6,
+        "weight": 60,
+        "time": 600,
+        "distance": 2000,
+        "iq": 136,
+        "reaction time": 190,
+        "long time": 600,
+        "long distance": 2000,
+        "sprint time": 1,
+        "sprint distance": 5
     },
     "Blaze": {
         "username": "Blaze",
@@ -13,6 +22,15 @@
         "dexLvl": 13,
         "intLvl": 15,
         "strLvl": 10,
-        "conLvl": 10
+        "conLvl": 10,
+        "weight": 63,
+        "time": 1300,
+        "distance": 5000,
+        "iq": 127,
+        "reaction time": 200,
+        "long time": 1300,
+        "long distance": 5000,
+        "sprint time": 1,
+        "sprint distance": 7
     }
 }

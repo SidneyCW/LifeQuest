@@ -14,6 +14,7 @@ from dex_write import calcDex
 from strong_reader import calcStr
 from calc_constitution import writeEnduranceCon
 from chess_elo import chess_elo_getter
+from convert_manual_json import convert_to_character
 
 
 
@@ -37,6 +38,7 @@ def write_data(username):
     f.write('\n')
     f.write('distance ' + run_distance + '.')
     f.close()
+    convert_to_character(username)
 
 def replace_data(username, data_type, data = None):
     if data_type == "chess elo":
@@ -65,4 +67,4 @@ def add_stats(username):
     write_json(userData, username)
     
     return None
-add_stats("Blaze")
+add_stats("Sleepy")

@@ -1,5 +1,5 @@
 chess elo 969
-iq 133
+iq 127
 time 1 second
 distance 0 kilometers 7 meters.
 weight 63

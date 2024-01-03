@@ -13,13 +13,13 @@ def intelligenceCalc(username):
     userData = json.load(userDataJson)
 
     _Data = f.read()
-    iq = int(_Data[_Data.find('iq'):].replace('iq ', '').split()[0])
+    iq = userData[username]['iq']
     chess_elo = chess_elo_getter(userData[username]["chess.com_username"])
-    chess_elo = try_catch(chess_elo) 
-    iq = try_catch(iq)
+    print(chess_elo)
     chessLvl = chess_elo / 100
     iqLvl = iq / 7.5
     intLvl = round((chessLvl + (iqLvl*2)) / 3)
 
     return intLvl
-#testin shite
+
+intelligenceCalc('Sleepy')
